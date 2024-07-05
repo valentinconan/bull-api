@@ -1,0 +1,17 @@
+{
+  "name": "bull-api",
+  "version": "master",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Valentin CONAN <valentin.conan@gmail.com>",
+  "license": "",
+  "dependencies": {
+    "bull": "4.8.4",
+    "express": "4.19.2"
+  },
+  "devDependencies": {
+  }
+}
