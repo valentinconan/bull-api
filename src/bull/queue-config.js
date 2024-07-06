@@ -2,7 +2,7 @@ const Queue = require('bull');
 
 const messageQueue = new Queue('message-queue', {
     redis: {
-        host: '127.0.0.1',
+        host: 'bull-api-redis',
         port: 6379
     }
 });

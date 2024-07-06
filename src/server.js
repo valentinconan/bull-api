@@ -11,6 +11,10 @@ app.use(express.json());
 //start consumer
 consumer();
 
+app.get('/ping', async (req, res) => {
+    res.sendStatus(200);
+});
+
 // Route order to produce message for test purpose
 app.get('/produce', async (req, res) => {
     const message = {"date": new Date().getTime()};

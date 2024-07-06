@@ -1,0 +1,39 @@
+services:
+  redis:
+    hostname: bull-api-redis
+    image: 'bitnami/redis:7.2.5'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 6379:6379
+    networks:
+      - bull-api-network
+  bull-api:
+    hostname: bull-api
+    image: valentinconan/bull-api:master
+    restart: unless-stopped
+    healthcheck:
+      test: wget -O /dev/null http://localhost:3000/ping || exit 1
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    ports:
+      - 3000:3000
+    networks:
+      - bull-api-network
+  bull-api-native:
+    hostname: bull-api-native
+    image: valentinconan/bull-api:master
+    restart: unless-stopped
+    healthcheck:
+      test: wget -O /dev/null http://localhost:3000/ping || exit 1
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    ports:
+      - 3001:3000
+    networks:
+      - bull-api-network
+networks:
+  bull-api-network:
+    driver: bridge
