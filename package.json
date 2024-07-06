@@ -4,7 +4,10 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node src/server.js",
+    "native": "npm run transpile && npm run compile",
+    "transpile": "esbuild --platform=node --bundle --outfile=bin/native.cjs src/server.js",
+    "compile": "pkg --no-bytecode --public --targets node16-linux-x64 --public-packages '*' --compress brotli --out-path bin bin/native.cjs"
   },
   "author": "Valentin CONAN <valentin.conan@gmail.com>",
   "license": "",
@@ -13,5 +16,7 @@
     "express": "4.19.2"
   },
   "devDependencies": {
+    "pkg": "5.8.1",
+    "esbuild": "0.17.11"
   }
 }
